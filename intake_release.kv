@@ -1,0 +1,18 @@
+
+<IntakeReleaseScreen>:
+    md_bg_color: "white"
+    name: "intake release screen"
+
+    NavBar:
+
+    MDBoxLayout:
+
+        MDLabel:
+            text: "screen B"
+
+        MDButton:
+            pos_hint: {"center_x": .5, "center_y": .5}
+            on_release: root.current = "screen B"
+
+            MDButtonText:
+                text: "Open Drawer"

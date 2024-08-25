@@ -1,0 +1,112 @@
+<StatusCard@MDCard>:
+    style: "filled"
+    pos_hint: {"center_x": .5, "center_y": .6}
+    padding: "4dp"
+    size_hint: None, None
+    size: "250dp", "150dp"
+    theme_bg_color: "Custom"
+    md_bg_color: "orange"
+
+<StatusValue@MDLabel>:
+    adaptive_size: True
+    color: "grey"
+    bold: True
+    font_style: "Display"
+    role: "small"
+    pos_hint: {"center_y": .5, "center_x": .5}
+
+<DashboardScreen>:
+    #md_bg_color: self.theme_cls.secondaryContainerColor
+
+    MDScrollView:
+
+        MDBoxLayout:
+            orientation: "vertical"
+            adaptive_height: True
+
+            MDGridLayout:
+                # md_bg_color: "red"
+                # size_hint: 1, .6
+                pos_hint: {"center_x": .5, "top": .9}
+                adaptive_size: True
+                padding: "15dp"
+                cols: 3
+                rows: 2
+                # orientation: "horizontal"
+                spacing: "10dp"
+
+                StatusCard:
+                    MDRelativeLayout:
+                        MDLabel:
+                            text: "INMATES"
+                            adaptive_size: True
+                            pos_hint: {"top": .9, "center_x": .3}
+
+                            MDGridLayout:
+                                cols: 3
+
+                                StatusValue:
+                                    id: total_prisoners
+#                                    text: "100"
+
+                StatusCard:
+                    MDRelativeLayout:
+                        MDLabel:
+                            text: "CELLS"
+                            adaptive_size: True
+                            pos_hint: {"top": .9, "center_x": .32}
+
+                        StatusValue:
+                            text: "5"
+
+                StatusCard:
+                    MDRelativeLayout:
+                        MDLabel:
+                            text: "GUARDS"
+                            adaptive_size: True
+                            pos_hint: {"top": .9, "center_x": .3}
+
+                        StatusValue:
+                            text: "75"
+
+                StatusCard:
+                    MDRelativeLayout:
+                        MDLabel:
+                            text: "TODAY VISITORS"
+                            adaptive_size: True
+                            pos_hint: {"top": .9, "center_x": .3}
+
+                        StatusValue:
+                            text: "17"
+
+                StatusCard:
+                    MDRelativeLayout:
+                        MDLabel:
+                            text: "INCIDENTS"
+                            adaptive_size: True
+                            pos_hint: {"top": .9, "center_x": .21}
+
+                        StatusValue:
+                            text: "13"
+
+                StatusCard:
+                    MDRelativeLayout:
+                        MDLabel:
+                            text: "SUMMARY"
+                            adaptive_size: True
+                            pos_hint: {"top": .9, "center_x": .31}
+
+                        StatusValue:
+                            text: "30"
+
+            MDGridLayout:
+                # md_bg_color: "red"
+                # size_hint: 1, .6
+                pos_hint: {"center_x": .5, "top": .9}
+                adaptive_size: True
+                padding: "15dp"
+                cols: 3
+                rows: 2
+                # orientation: "horizontal"
+                spacing: "10dp"
+

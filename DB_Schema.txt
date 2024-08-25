@@ -1,0 +1,141 @@
+Designing a prison management system database schema involves capturing the essential entities and their relationships to manage various aspects of a prison's operations. Below is a conceptual database schema with tables and relationships that could be used in a prison management system:
+
+1. Prisoners
+prisoner_id (Primary Key, Auto-increment)
+first_name (String, Not Null)
+last_name (String, Not Null)
+date_of_birth (Date, Not Null)
+gender (String, Not Null)
+admission_date (Date, Not Null)
+release_date (Date, Nullable)
+status (String, Not Null, e.g., 'Incarcerated', 'Released', 'Transferred')
+cell_id (Foreign Key, References Cells.cell_id)
+crime_id (Foreign Key, References Crimes.crime_id)
+sentence_duration (Integer, Not Null, in months)
+medical_history (Text, Nullable)
+
+2. Cells
+cell_id (Primary Key, Auto-increment)
+block_name (String, Not Null)
+cell_number (String, Not Null)
+capacity (Integer, Not Null)
+current_occupancy (Integer, Not Null)
+
+3. Crimes
+crime_id (Primary Key, Auto-increment)
+crime_name (String, Not Null)
+description (Text, Nullable)
+
+4. Guards
+guard_id (Primary Key, Auto-increment)
+first_name (String, Not Null)
+last_name (String, Not Null)
+date_of_birth (Date, Not Null)
+employment_date (Date, Not Null)
+shift_id (Foreign Key, References Shifts.shift_id)
+rank (String, Not Null)
+contact_information (String, Not Null)
+
+5. Shifts
+shift_id (Primary Key, Auto-increment)
+shift_name (String, Not Null, e.g., 'Day', 'Night', 'Evening')
+start_time (Time, Not Null)
+end_time (Time, Not Null)
+
+6. Visits
+visit_id (Primary Key, Auto-increment)
+prisoner_id (Foreign Key, References Prisoners.prisoner_id)
+visitor_name (String, Not Null)
+relationship (String, Not Null)
+visit_date (Date, Not Null)
+visit_time (Time, Not Null)
+visit_reason (Text, Nullable)
+
+7. Incidents
+incident_id (Primary Key, Auto-increment)
+prisoner_id (Foreign Key, References Prisoners.prisoner_id)
+guard_id (Foreign Key, References Guards.guard_id)
+incident_date (Date, Not Null)
+incident_time (Time, Not Null)
+description (Text, Not Null)
+action_taken (Text, Nullable)
+
+8. Transfers
+transfer_id (Primary Key, Auto-increment)
+prisoner_id (Foreign Key, References Prisoners.prisoner_id)
+from_prison_id (Foreign Key, References Prisons.prison_id)
+to_prison_id (Foreign Key, References Prisons.prison_id)
+transfer_date (Date, Not Null)
+reason (Text, Not Null)
+
+9. Prisons
+prison_id (Primary Key, Auto-increment)
+prison_name (String, Not Null)
+location (String, Not Null)
+capacity (Integer, Not Null)
+current_population (Integer, Not Null)
+
+10. Medical Records
+record_id (Primary Key, Auto-increment)
+prisoner_id (Foreign Key, References Prisoners.prisoner_id)
+visit_date (Date, Not Null)
+doctor_name (String, Not Null)
+diagnosis (Text, Not Null)
+treatment (Text, Not Null)
+prescription (Text, Nullable)
+
+11. Visits Log
+log_id (Primary Key, Auto-increment)
+visit_id (Foreign Key, References Visits.visit_id)
+guard_id (Foreign Key, References Guards.guard_id)
+log_date (Date, Not Null)
+log_time (Time, Not Null)
+notes (Text, Nullable)
+
+12. Staff
+staff_id (Primary Key, Auto-increment)
+first_name (String, Not Null)
+last_name (String, Not Null)
+role (String, Not Null, e.g., 'Doctor', 'Counselor', 'Administrator')
+date_of_birth (Date, Not Null)
+employment_date (Date, Not Null)
+contact_information (String, Not Null)
+prison_id (Foreign Key, References Prisons.prison_id)
+
+13. Rehabilitation Programs
+program_id (Primary Key, Auto-increment)
+program_name (String, Not Null)
+description (Text, Not Null)
+start_date (Date, Not Null)
+end_date (Date, Nullable)
+instructor_name (String, Not Null)
+
+14. Program Enrollments
+enrollment_id (Primary Key, Auto-increment)
+prisoner_id (Foreign Key, References Prisoners.prisoner_id)
+program_id (Foreign Key, References Rehabilitation Programs.program_id)
+enrollment_date (Date, Not Null)
+completion_date (Date, Nullable)
+status (String, Not Null, e.g., 'Enrolled', 'Completed', 'Dropped')
+
+15. Employment Records
+employment_id (Primary Key, Auto-increment)
+prisoner_id (Foreign Key, References Prisoners.prisoner_id)
+job_title (String, Not Null)
+start_date (Date, Not Null)
+end_date (Date, Nullable)
+salary (Decimal, Nullable)
+
+Relationships:
+Prisoners to Cells: One-to-Many (A cell can house many prisoners, but a prisoner is assigned to one cell).
+Prisoners to Crimes: Many-to-One (A prisoner can be convicted of one crime, but a crime can apply to many prisoners).
+Prisoners to Visits: One-to-Many (A prisoner can have many visits).
+Prisoners to Incidents: One-to-Many (A prisoner can be involved in many incidents).
+Guards to Shifts: One-to-Many (A guard works in one shift, but a shift has many guards).
+Guards to Incidents: One-to-Many (A guard can be involved in many incidents).
+Prisons to Transfers: One-to-Many (A prison can have many transfers in and out).
+Prisoners to Transfers: One-to-Many (A prisoner can be transferred multiple times).
+Prisoners to Medical Records: One-to-Many (A prisoner can have multiple medical records).
+Staff to Prisons: Many-to-One (Staff works in one prison, but a prison has many staff members).
+Prisoners to Rehabilitation Programs: Many-to-Many through Program Enrollments.
+Prisoners to Employment Records: One-to-Many (A prisoner can have multiple employment records).

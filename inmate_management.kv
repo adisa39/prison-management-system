@@ -1,0 +1,113 @@
+<FormTextInput@MDTextField>:
+    mode: "outlined"
+    size_hint_x: None
+    pos_hint: {"center_x": .5, "center_y": .5}
+    size_hint_x: 0.8
+
+    MDTextFieldLeadingIcon:
+        icon: "account"
+
+    MDTextFieldTrailingIcon:
+        icon: "information"
+
+    MDTextFieldMaxLengthText:
+        max_text_length: 10
+
+<FormDateField>:
+    mode: "outlined"
+    pos_hint: {'center_x': .5, 'center_y': .85}
+    size_hint_x: .5
+#    on_focus: root.show_date_picker(self.focus)
+
+    MDTextFieldHelperText:
+        text: "MM/DD/YYYY"
+        mode: "persistent"
+
+    MDTextFieldTrailingIcon:
+        icon: "calendar"
+
+<InmateManagerScreen>:
+    md_bg_color: "white"
+    name: "inmate management screen"
+
+    MDScrollView:
+        do_scroll_x: False
+
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: "30dp"
+            adaptive_height: True
+            padding: "50dp"
+
+            FormTextInput:
+                id: first_name
+                MDTextFieldHintText:
+                    text: "First Name"
+
+            FormTextInput:
+                id: last_name
+                MDTextFieldHintText:
+                    text: "Last Name"
+
+            FormDateField:
+                id: dob
+                on_focus: root.show_date_picker(self.focus)
+                MDTextFieldHintText:
+                    text: "Date of Birth"
+
+            MDSegmentedButton:
+                id: gender
+                pos_hint: {'center_x': .5, 'center_y': .85}
+                size_hint_x: .5
+                MDSegmentedButtonItem:
+#                    on_active: app.generate_card()
+                    MDSegmentButtonLabel:
+                        text: "Male"
+                        active: True
+
+                MDSegmentedButtonItem:
+#                    on_active: app.generate_card()
+                    MDSegmentButtonLabel:
+                        text: "Female"
+
+
+            FormDateField:
+                id: admission_date
+                on_focus: root.show_date_picker(self.focus)
+                MDTextFieldHintText:
+                    text: "Admission Date"
+
+            MDSegmentedButton:
+                id: status
+                pos_hint: {'center_x': .5, 'center_y': .85}
+                size_hint_x: .5
+                MDSegmentedButtonItem:
+#                    on_active: app.generate_card()
+                    MDSegmentButtonLabel:
+                        text: "Incacerated"
+                        active: True
+
+                MDSegmentedButtonItem:
+#                    on_active: app.generate_card()
+                    MDSegmentButtonLabel:
+                        text: "Sick"
+
+                MDSegmentedButtonItem:
+#                    on_active: app.generate_card()
+                    MDSegmentButtonLabel:
+                        text: "New"
+
+            FormTextInput:
+                id: sentence_duration
+                MDTextFieldHintText:
+                    text: "Sentence Duration (Months)"
+
+            MDButton:
+                style: "outlined"
+                pos_hint: {"center_x": 0.5}
+                size_hint_x: .8
+                on_release:
+                    app.add_prisoner(first_name.text, last_name.text, dob.text, gender.text, admission_date.text, status.text, sentence_duration.text)
+
+                MDButtonText:
+                    text: "Add Prisoner"

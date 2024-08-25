@@ -1,0 +1,101 @@
+#:include dashboard DashboardScreen
+#:include inmate_management inmate_management
+
+<Home>:
+    MDBoxLayout:
+        orientation: "vertical"
+        MDTopAppBar:
+            type: "small"
+            size_hint_x: 1
+            pos_hint: {"top": 1}
+
+            MDTopAppBarLeadingButtonContainer:
+
+                MDActionTopAppBarButton:
+                    icon: "menu"
+                    on_release: nav_drawer.set_state("toggle")
+
+            MDTopAppBarTitle:
+                text: "PRISON MANAGEMENT SYSTEM"
+                pos_hint: {"center_x": .5}
+
+        MDNavigationLayout:
+            MyScreenManager:
+                id: sm
+                DashboardScreen:
+                    name: "dashboard"
+
+                InmateManagerScreen:
+                    name: "inmate management screen"
+                    md_bg_color: self.theme_cls.secondaryContainerColor
+
+                NewPrisonerScreen:
+                    name: "new prisoner"
+
+            MDNavigationDrawer:
+                id: nav_drawer
+                radius: 0, dp(16), dp(16), 0
+
+                MDNavigationDrawerMenu:
+
+                    MDNavigationDrawerLabel:
+                        text: "ADMIN"
+
+                    MDNavigationDrawerDivider:
+
+                    MDNavigationDrawerItem:
+                        on_release: sm.current = "dashboard"
+
+                        MDNavigationDrawerItemLeadingIcon:
+                            icon: "monitor-dashboard"
+
+                        MDNavigationDrawerItemText:
+                            text: "Dashboard"
+
+                    MDNavigationDrawerItem:
+                        on_release: sm.current = "inmate management screen"
+
+                        MDNavigationDrawerItemLeadingIcon:
+                            icon: "account-file-text"
+
+                        MDNavigationDrawerItemText:
+                            text: "Inmate Management"
+
+                    MDNavigationDrawerItem:
+                        on_release: sm.current = "new prisoner"
+                        MDNavigationDrawerItemLeadingIcon:
+                            icon: "swap-horizontal-bold"
+                        MDNavigationDrawerItemText:
+                            text: "New Intake and Release"
+
+                    MDNavigationDrawerItem:
+
+                        MDNavigationDrawerItemLeadingIcon:
+                            icon: "home-lock"
+
+                        MDNavigationDrawerItemText:
+                            text: "Housing and Cell Assignment"
+
+                    MDNavigationDrawerItem:
+
+                        MDNavigationDrawerItemLeadingIcon:
+                            icon: "help-box-multiple"
+
+                        MDNavigationDrawerItemText:
+                            text: "Help and Support"
+
+                    MDNavigationDrawerItem:
+
+                        MDNavigationDrawerItemLeadingIcon:
+                            icon: "cog-box"
+
+                        MDNavigationDrawerItemText:
+                            text: "Settings"
+
+                    MDNavigationDrawerItem:
+
+                        MDNavigationDrawerItemLeadingIcon:
+                            icon: "logout"
+
+                        MDNavigationDrawerItemText:
+                            text: "Logout"

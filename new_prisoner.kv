@@ -1,0 +1,70 @@
+<NewPrisonerScreen>:
+    md_bg_color: self.theme_cls.backgroundColor
+    name: "new prisoner"
+    MDBoxLayout:
+        orientation: "vertical"
+        #md_bg_color: "white"
+
+        MDBoxLayout:
+            orientation: "vertical"
+            padding: dp(10)
+            spacing: dp(10)
+
+            MDBoxLayout:
+                adaptive_height: True
+
+                MDTextField:
+                    id: search_field
+                    hint_text: "Search by Name"
+                    size_hint_x: 0.7
+                    pos_hint: {"center_x": 0.5}
+                    on_text: root.load_table_data(self.text)
+
+                MDDropDownItem:
+                    #size_hint_x: 0.3
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    on_release: root.open_filter_menu(self)
+
+                    MDDropDownItemText:
+                        id: drop_text
+                        text: "Filter by Status"
+                        halign: "center"
+                        text_color: "red"
+
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: dp(10)
+
+                MDGridLayout:
+                    cols: 5
+                    adaptive_height: True
+                    padding: dp(5)
+                    spacing: dp(5)
+
+                    MDLabel:
+                        text: "ID"
+                        bold: True
+                    MDLabel:
+                        text: "First Name"
+                        bold: True
+                    MDLabel:
+                        text: "Last Name"
+                        bold: True
+                    MDLabel:
+                        text: "Status"
+                        bold: True
+                    MDLabel:
+                        text: "Sentence"
+                        bold: True
+
+                PrisonersRecycleView:
+                    id: prisoners_rv
+                    viewclass: 'MDLabel'
+                    MDRecycleGridLayout:
+                        cols: 5
+                        adaptive_height: True
+                        default_size: None, dp(40)
+                        default_size_hint: 1, None
+
+<PrisonersRecycleView>:
+    bar_width: 10

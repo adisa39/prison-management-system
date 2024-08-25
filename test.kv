@@ -1,0 +1,101 @@
+<TestScreen>:
+    name: "test"
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(10)
+        spacing: dp(10)
+
+        MDLabel:
+            text: "Prison Management Dashboard"
+            halign: "center"
+            #font_style: "H4"
+            size_hint_y: None
+            height: self.texture_size[1] + dp(20)
+
+        MDGridLayout:
+            cols: 3
+            spacing: dp(10)
+            padding: dp(10)
+            adaptive_height: True
+
+            MDCard:
+                orientation: 'vertical'
+                padding: dp(20)
+                size_hint: None, None
+                size: dp(150), dp(150)
+
+                MDLabel:
+                    text: "Total Prisoners"
+                    #font_style: "H6"
+                    halign: "center"
+
+                MDLabel:
+                    id: total_prisoners
+                    text: "0"
+                    #font_style: "H5"
+                    halign: "center"
+
+            MDCard:
+                orientation: 'vertical'
+                padding: dp(20)
+                size_hint: None, None
+                size: dp(150), dp(150)
+
+                MDLabel:
+                    text: "Incarcerated"
+                    #font_style: "H6"
+                    halign: "center"
+
+                MDLabel:
+                    id: incarcerated_count
+                    text: "0"
+                    #font_style: "H5"
+                    halign: "center"
+
+            MDCard:
+                orientation: 'vertical'
+                padding: dp(20)
+                size_hint: None, None
+                size: dp(150), dp(150)
+
+                MDLabel:
+                    text: "Released"
+                    #font_style: "H6"
+                    halign: "center"
+
+                MDLabel:
+                    id: released_count
+                    text: "0"
+                    #font_style: "H5"
+                    halign: "center"
+
+            MDCard:
+                orientation: 'vertical'
+                padding: dp(20)
+                size_hint: None, None
+                size: dp(150), dp(150)
+
+                MDLabel:
+                    text: "Transferred"
+                    #font_style: "H6"
+                    halign: "center"
+
+                MDLabel:
+                    id: transferred_count
+                    text: "0"
+                    #font_style: "H5"
+                    halign: "center"
+
+        MDBoxLayout:
+            padding: dp(10)
+            size_hint_y: None
+            height: dp(50)
+
+            MDButton:
+                text: "View Prisoners"
+                on_release: app.root.current = 'new prisoner'
+
+            MDButton:
+                text: "Add New Prisoner"
+                on_release: app.root.current = 'add prisoner'
+
