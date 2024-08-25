@@ -21,7 +21,7 @@ class DashboardScreen(MDScreen):
         transferred_count = total_prisoners.get("Transferred", 0)
         print(total_prisoners)
         # Update the dashboard with fetched data
-        self.ids.total_prisoners.text = str(sum(total_prisoners.values()))
+        # self.ids.total_prisoners.text = str(sum(total_prisoners.values()))
         # self.ids.incarcerated_count.text = str(incarcerated_count)
         # self.ids.released_count.text = str(released_count)
         # self.ids.transferred_count.text = str(transferred_count)
